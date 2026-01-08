@@ -1,10 +1,10 @@
-# Grupp9
 readme.MD
+# Grupp9
 
+# Namn på projektet:
+Quiz
 
-# Namn på projektet
-
-Namn på alla deltagare
+Namn på alla deltagare:
 Loke, Isak, Olle, Eyosias, Martina
 
 ### Tävlar i kategori: 
@@ -23,4 +23,13 @@ Här presenterar ni saker som ni har laddat ner och använt för att bygga ert a
 ### Install
 
 Här skriver ni vad vi i juryn behöver göra för att kunna köra ert program / app / webbsida
+JS node
+html
+css
+figma
+SQLite
+Beekeeper
+VS code
+Github desktop
+Express
 
