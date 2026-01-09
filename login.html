@@ -12,19 +12,20 @@
       <h1>Namn av quizapp/webbsite</h1>
     </header>
     <main>
-      <form action="">
+      <form action="./main.html">
         <label for="email">email</label>
-        <input type="email" name="email" id="email">
+        <input type="email" name="email" id="email" required>
   
         <label for="password">password</label>
-        <input type="password" name="password" id="password">
+        <input type="password" name="password" id="password" required>
         
-        <button type="button">Sign in</button>
+        <input type="submit" /*onclick="mainpage();"*/>
         <ul>
          <a href="register.html">Forgot password?</a>
          <a href="register.html">No account? Make a new one.</a>
         </ul>
       </form>
     </main>
+    <script src="index.js"></script>
   </body>
 </html>

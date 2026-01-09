@@ -20,9 +20,10 @@ Det ska även ingå en tekniskt beskrivning, där ni beskriver en eller flera te
 
 Här presenterar ni saker som ni har laddat ner och använt för att bygga ert arbete. Beskriv också i vilken utsträckning de behövs för projektet.
 
-### Install
 
-Här skriver ni vad vi i juryn behöver göra för att kunna köra ert program / app / webbsida
+
+### Install
+sqlite3 för att koppla samman js med databasen(SQlite)
 JS node
 html
 css
@@ -31,5 +32,9 @@ SQLite
 Beekeeper
 VS code
 Github desktop
-Express
+
+
+
+Här skriver ni vad vi i juryn behöver göra för att kunna köra ert program / app / webbsida
+
 
