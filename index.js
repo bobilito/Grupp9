@@ -1,5 +1,40 @@
-const sqlite3 = require('sqlite3').verbose();
+const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('./databas.db');
+//login
+
+function login(Namn, lösenord){
+  db.get("SELECT lösenord FROM Personer WHERE namn == '"+namn+"'",function(error, row){
+    if(error){
+    console.log(error);
+   }
+   console.log(row);
+   if (row.lösenord == lösenord)
+   {
+   console.log("du har rätt lösenord");
+   }
+   else{
+    console.log("du har fel lösenord");
+   }
+  });
+};
+
+
+
+
+
+
+
+
+//register
+
+
+
+
+
+
+
+
+
 
 function KollaSvar(svar, facit){
   const svar1 = svar.toLowerCase().split(" ");
@@ -37,22 +72,7 @@ function användardataspara(lösenord, namn){
    }
   });
 }
-function login(namn, lösenord){
-  db.get("SELECT lösenord FROM Personer WHERE namn == '"+namn+"'",function(error, row){
-    if(error){
-    console.log(error);
-   }
-   console.log(row)
-   if (row.lösenord == lösenord)
-   {
-   console.log("du har rätt lösenord");
-   }
-   else{
-    console.log("du har fel lösenord");
-   }
-  })
 
-}
 //användardataspara("1234","bob");
 //läggatill("hälsningsfras","hej");
 /*let b = KollaSvar("asd hej  ","hej") 
