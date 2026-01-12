@@ -1,0 +1,19 @@
+button {
+    background-color: #62cff4;
+    border: none;
+    color: black;
+    padding: 20px 40px;
+    border-radius: 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 40px;
+    margin: 4px 2px;
+    font-weight: bolder;
+
+}
+
+img {
+    width: 150px;
+    height: auto;
+}

@@ -1,31 +1,37 @@
 <!DOCTYPE html>
-<html lang="sv">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" 
-    <title>Login page</title>
-  </head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="style2.css">
+  <script src="auth.js" defer></script>
+</head>
+<body>
 
-  <body>
-    <header>
-      <picture><img src="#" alt="Logotyp"></picture>
-      <h1>Namn av quizapp/webbsite</h1>
-    </header>
-    <main>
-      <form action="./main.html">
-        <label for="email">email</label>
-        <input type="email" name="email" id="email" required>
-  
-        <label for="password">password</label>
-        <input type="password" name="password" id="password" required>
-        
-        <input type="submit" /*onclick="mainpage();"*/>
-        <ul>
-         <a href="register.html">Forgot password?</a>
-         <a href="register.html">No account? Make a new one.</a>
-        </ul>
-      </form>
-    </main>
-    <script src="index.js"></script>
-  </body>
+  <!-- Top bar -->
+  <div class="top-bar">
+    <div class="top-center">
+      <img src="logo.png" alt="Logo">
+      <span>TAGLINE GOES HERE</span>
+    </div>
+
+  </div>
+
+  <!-- Login card -->
+  <div class="auth-card">
+    <label>Email</label>
+    <input type="email" placeholder="Value" id="loginEmail">
+
+    <label>Password</label>
+    <input type="password" placeholder="Value" id="loginPassword">
+
+    <button id="loginBtn">Sign In</button>
+
+    <div class="links">
+      <a href="#">Forgot password?</a><br>
+      <a href="register.html">No account? Make a new one.</a>
+    </div>
+  </div>
+
+</body>
 </html>
