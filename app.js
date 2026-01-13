@@ -10,18 +10,27 @@ const db = new sqlite3.Database('./databas.db');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'view'));
+app.set('views', path.join(__dirname, 'views'));
 
 //api login
 app.get("/", function(request, response){
-      response.render('login')
-})
+      response.render('login');
+});
+app.get("/login.ejs", function(request, response){
+      response.render('login');
+});
+app.get("/register.ejs", function(request, response){
+      response.render('register');
+});
+app.get("/main.ejs", function(request, response){
+      response.render('main');
+});
 
 
 
 
 //login
-
+/*
 function login(Namn, lösenord){
   db.get("SELECT lösenord FROM Personer WHERE namn == '"+namn+"'",function(error, row){
     if(error){
@@ -97,5 +106,8 @@ if (b == true){
 //login("bob", "12345");
 
 //startar server
-app.listen(8080);
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`servern kör på ${PORT}`);
+});
 db.close;
