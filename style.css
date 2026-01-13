@@ -1,19 +1,127 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Inter, system-ui, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #eefbff 0%, #7dd9ff 100%);
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    padding: 20px 40px;
+    gap: 15px;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-container img {
+    width: 60px;
+    height: auto;
+}
+
+.tagline {
+    font-size: 10px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.navbar{
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.navbar a {
+    padding: 8px 24px;
+    background-color: #62cff4;
+    color: black;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.navbar a:hover {
+    background-color: #4ab8db;
+}
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.profile-icon::before {
+    content: "👤";
+    font-size: 24px;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.subtitle {
+    font-size: 18px;
+    margin-bottom: 60px;
+    color: #333;
+}
+
+
 button {
     background-color: #62cff4;
     border: none;
     color: black;
-    padding: 20px 40px;
+    padding: 20px 60px;
     border-radius: 40px;
     text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 40px;
-    margin: 4px 2px;
-    font-weight: bolder;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;   
 
 }
 
-img {
-    width: 150px;
-    height: auto;
+button:hover {
+    background-color: #4ab8db;
+    transform: translateY(-2px);
 }
+
+button:active {
+    transform: translateY(0);
+}
+
