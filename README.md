@@ -5,7 +5,7 @@ readme.MD
 Quiz
 
 Namn på alla deltagare:
-Loke, Isak, Olle, Eyosias, Martina
+Loke, Isak, Olle, Eyosias, Martina, Sofia
 
 ### Tävlar i kategori: 
 

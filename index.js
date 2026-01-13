@@ -1,5 +1,40 @@
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('./databas.db');
+//login
+
+function login(Namn, lösenord){
+  db.get("SELECT lösenord FROM Personer WHERE namn == '"+namn+"'",function(error, row){
+    if(error){
+    console.log(error);
+   }
+   console.log(row);
+   if (row.lösenord == lösenord)
+   {
+   console.log("du har rätt lösenord");
+   }
+   else{
+    console.log("du har fel lösenord");
+   }
+  });
+};
+
+
+
+
+
+
+
+
+//register
+
+
+
+
+
+
+
+
+
 
 function KollaSvar(svar, facit){
   const svar1 = svar.toLowerCase().split(" ");
@@ -20,9 +55,29 @@ function läggatill(fråga, svar){
 function mainpage(){
   window.location.href="./main.html";
 }
+function användardataspara(lösenord, namn){
+  db.all("SELECT * FROM Personer WHERE namn == '"+namn+"' AND lösenord == '"+lösenord+"' OR namn = '"+namn+"'",function(error, rows){
+    if(error){
+    console.log(error);
+   }
+   if (rows !="")
+   {
+   console.log("användar namn upptaget");
+   }
+   else if(rows == ""){
+   console.log("användar namn ej upptaget");
+   db.run("INSERT INTO Personer (Lösenord, Namn)VALUES('"+lösenord+"','"+namn+"')",function(error){
+    console.log(error);
+  });
+   }
+  });
+}
+
+//användardataspara("1234","bob");
 //läggatill("hälsningsfras","hej");
-let b = KollaSvar("asd hej  ","hej") 
+/*let b = KollaSvar("asd hej  ","hej") 
 if (b == true){
   console.log("du hade rätt svar")
-}
+}*/
+//login("bob", "12345");
 db.close;
