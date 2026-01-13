@@ -1,3 +1,14 @@
+// Express 
+const express = require("express");
+const app = express();
+
+app.get("/home", function(request, response){
+   response.send("Welcome to this server website");
+})
+
+app.listen(8080);
+
+
 // LOGIN
 const loginForm = document.getElementById("loginForm");
 if (loginForm) {

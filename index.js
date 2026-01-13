@@ -1,5 +1,25 @@
-const sqlite3 = require('sqlite3');
+const sqlite3 = require('sqlite3').verbose();
+const express = require("express");
+const path = require('path');
+
+const app = express();
+
+//koppla databas
 const db = new sqlite3.Database('./databas.db');
+// Express 
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'view'));
+
+//api login
+app.get("/", function(request, response){
+      response.render('login')
+})
+
+
+
+
 //login
 
 function login(Namn, lösenord){
@@ -20,14 +40,25 @@ function login(Namn, lösenord){
 
 
 
-
-
-
-
-
 //register
 
-
+function användardataspara(lösenord, namn){
+  db.all("SELECT * FROM Personer WHERE namn == '"+namn+"' AND lösenord == '"+lösenord+"' OR namn = '"+namn+"'",function(error, rows){
+    if(error){
+    console.log(error);
+   }
+   if (rows !="")
+   {
+   console.log("användar namn upptaget");
+   }
+   else if(rows == ""){
+   console.log("användar namn ej upptaget");
+   db.run("INSERT INTO Personer (Lösenord, Namn)VALUES('"+lösenord+"','"+namn+"')",function(error){
+    console.log(error);
+  });
+   }
+  });
+}
 
 
 
@@ -55,23 +86,7 @@ function läggatill(fråga, svar){
 function mainpage(){
   window.location.href="./main.html";
 }
-function användardataspara(lösenord, namn){
-  db.all("SELECT * FROM Personer WHERE namn == '"+namn+"' AND lösenord == '"+lösenord+"' OR namn = '"+namn+"'",function(error, rows){
-    if(error){
-    console.log(error);
-   }
-   if (rows !="")
-   {
-   console.log("användar namn upptaget");
-   }
-   else if(rows == ""){
-   console.log("användar namn ej upptaget");
-   db.run("INSERT INTO Personer (Lösenord, Namn)VALUES('"+lösenord+"','"+namn+"')",function(error){
-    console.log(error);
-  });
-   }
-  });
-}
+
 
 //användardataspara("1234","bob");
 //läggatill("hälsningsfras","hej");
@@ -80,4 +95,7 @@ if (b == true){
   console.log("du hade rätt svar")
 }*/
 //login("bob", "12345");
+
+//startar server
+app.listen(8080);
 db.close;
