@@ -33,7 +33,7 @@ app.get("/main.ejs", function(request, response){
       response.render('main');
 });
 app.get("/forgotpassword.ejs", function(request, response){
-  response.render('main');
+  response.render('forgotpassword');
 });
 
 app.post("/login/data", function(request, response){
