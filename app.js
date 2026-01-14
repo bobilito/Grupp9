@@ -39,6 +39,7 @@ app.get("/quiz", function(request, response){
   response.render('choosesubject');
 });
 app.get("/matte", function(request, response){
+  document.getElementByID("fråga").text ="HEllo";
   response.render('quiz');
 });
 app.post("/login/data", function(request, response){
@@ -130,7 +131,6 @@ function läggatill(fråga, svar){
 function mainpage(){
   window.location.href="./main.html";
 }
-
 
 //startar server
 const PORT = process.env.PORT || 8080;
