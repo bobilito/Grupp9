@@ -1,13 +1,19 @@
 const sqlite3 = require('sqlite3').verbose();
 const express = require("express");
 const path = require('path');
+const session = require('express-session');
 
 const app = express();
-app.use(express.urlencoded({extended: true}));
+
 //koppla databas
 const db = new sqlite3.Database('./databas.db');
 // Express 
-
+app.use(session({
+  secret: 'key',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -78,6 +84,12 @@ function register(response, lösenord, namn){
    db.run("INSERT INTO Personer (Lösenord, Namn)VALUES('"+lösenord+"','"+namn+"')",function(error){
    console.log(error);
    response.render('main.ejs') 
+  });
+  db.run("SELECT ID FROM Personer WHERE lösenord == '"+lösenord+"','"+namn+"'",function(err,ID){
+    console.log(err);
+    db.run("INSERT INTO Frågor (namn, personID, frågaID) VALUES('Mattequiz', "+ID+", 1),('Mattequiz', "+ID+", 2),('Mattequiz', "+ID+", 3),('Mattequiz', "+ID+", 4),('Mattequiz', "+ID+", 5)",function(err){
+       console.log(err);
+    });
   });
    }
   });
