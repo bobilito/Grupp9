@@ -39,8 +39,7 @@ app.get("/quiz", function(request, response){
   response.render('choosesubject');
 });
 app.get("/matte", function(request, response){
-  document.getElementByID("fråga").text ="HEllo";
-  response.render('quiz');
+  response.render('quiz',{message: "hejsan"});
 });
 app.post("/login/data", function(request, response){
       const name = request.body.Username;
@@ -104,12 +103,6 @@ function register(response, lösenord, namn){
    }
   });
 }
-
-
-
-
-
-
 
 
 function KollaSvar(svar, facit){
