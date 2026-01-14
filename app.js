@@ -38,7 +38,7 @@ app.get("/forgotpassword.ejs", function(request, response){
 app.get("/quiz", function(request, response){
   response.render('choosesubject');
 });
-app.post("/matte", function(request, response){
+app.get("/matte", function(request, response){
   response.render('quiz');
 });
 app.post("/login/data", function(request, response){
