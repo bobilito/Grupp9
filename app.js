@@ -35,7 +35,12 @@ app.get("/main.ejs", function(request, response){
 app.get("/forgotpassword.ejs", function(request, response){
   response.render('forgotpassword');
 });
-
+app.get("/quiz", function(request, response){
+  response.render('choosesubject');
+});
+app.post("/matte", function(request, response){
+  
+});
 app.post("/login/data", function(request, response){
       const name = request.body.Username;
       const password = request.body.password;
