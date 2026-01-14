@@ -25,6 +25,9 @@ app.get("/register.ejs", function(request, response){
 app.get("/main.ejs", function(request, response){
       response.render('main');
 });
+app.get("/forgotpassword.ejs", function(request, response){
+  response.render('forgotpassword');
+});
 
 
 
