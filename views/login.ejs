@@ -20,14 +20,14 @@
 
   <!-- Login card -->
   <div class="auth-card">
-    <form action="/main.ejs">
-    <label>Username</label>
-    <input type="username" placeholder="Namn" id="username" required>
+    <form action="/login/data" method="post">
+    <label for="Username">Username</label>
+    <input type="text" placeholder="Username:" name="Username" required>
 
-    <label>Password</label>
-    <input type="password" placeholder="Lösenord" id="loginPassword" required>
+    <label for="password">Password</label>
+    <input type="password" placeholder="password:" name="password" required>
 
-    <button id="loginBtn" onclick="">Sign In</button>
+    <button id="loginBtn" type="submit" onclick="">Sign In</button>
     </form>
 
     <div class="links">

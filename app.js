@@ -3,7 +3,7 @@ const express = require("express");
 const path = require('path');
 
 const app = express();
-
+app.use(express.urlencoded({extended: true}));
 //koppla databas
 const db = new sqlite3.Database('./databas.db');
 // Express 
@@ -25,8 +25,16 @@ app.get("/register.ejs", function(request, response){
 app.get("/main.ejs", function(request, response){
       response.render('main');
 });
-app.get("/forgotpassword.ejs", function(request, response){
-  response.render('forgotpassword');
+
+app.post("/login/data", function(request, response){
+      const name = request.body.Username;
+      const password = request.body.password;
+      const value = login(response,name,password);
+});
+app.post("/register", function(request, response){
+      const password = request.body.username;
+      const name = request.body.password;
+      const value = register(response,name,password);
 });
 
 
@@ -34,9 +42,9 @@ app.get("/forgotpassword.ejs", function(request, response){
 
 
 //login
-/*
-function login(Namn, lösenord){
-  db.get("SELECT lösenord FROM Personer WHERE namn == '"+namn+"'",function(error, row){
+
+function login(response, namn, lösenord){
+    db.get("SELECT lösenord FROM Personer WHERE namn == '"+namn+"'",function(error, row){
     if(error){
     console.log(error);
    }
@@ -44,6 +52,7 @@ function login(Namn, lösenord){
    if (row.lösenord == lösenord)
    {
    console.log("du har rätt lösenord");
+   response.render('main.ejs');
    }
    else{
     console.log("du har fel lösenord");
@@ -55,8 +64,8 @@ function login(Namn, lösenord){
 
 //register
 
-function användardataspara(lösenord, namn){
-  db.all("SELECT * FROM Personer WHERE namn == '"+namn+"' AND lösenord == '"+lösenord+"' OR namn = '"+namn+"'",function(error, rows){
+function register(response, lösenord, namn){
+  db.all("SELECT * FROM Personer WHERE namn == '"+namn+"' AND lösenord == '"+lösenord+"' OR namn == '"+namn+"'",function(error, rows){
     if(error){
     console.log(error);
    }
@@ -67,7 +76,8 @@ function användardataspara(lösenord, namn){
    else if(rows == ""){
    console.log("användar namn ej upptaget");
    db.run("INSERT INTO Personer (Lösenord, Namn)VALUES('"+lösenord+"','"+namn+"')",function(error){
-    console.log(error);
+   console.log(error);
+   response.render('main.ejs') 
   });
    }
   });
@@ -100,14 +110,6 @@ function mainpage(){
   window.location.href="./main.html";
 }
 
-
-//användardataspara("1234","bob");
-//läggatill("hälsningsfras","hej");
-/*let b = KollaSvar("asd hej  ","hej") 
-if (b == true){
-  console.log("du hade rätt svar")
-}*/
-//login("bob", "12345");
 
 //startar server
 const PORT = process.env.PORT || 8080;
