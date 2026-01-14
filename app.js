@@ -32,7 +32,6 @@ app.get("/register.ejs", function(request, response){
 app.get("/main.ejs", function(request, response){
       response.render('main');
 });
-
 app.post("/login/data", function(request, response){
       const name = request.body.Username;
       const password = request.body.password;
