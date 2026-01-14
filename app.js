@@ -39,7 +39,16 @@ app.get("/quiz", function(request, response){
   response.render('choosesubject');
 });
 app.get("/matte", function(request, response){
-  response.render('quiz',{message: "hejsan"});
+  response.render('quiz',{message: "matte fråga", Rubrik: "Mattematik"});
+});
+app.get("/geografi", function(request, response){
+  response.render('quiz',{message: "geografi fråga", Rubrik: "Geografi"});
+});
+app.get("/kemi", function(request, response){
+  response.render('quiz',{message: "kemi fråga", Rubrik: "Kemi"});
+});
+app.get("/custom", function(request, response){
+  response.render('quiz',{message: "egen fråga", Rubrik: "Custom"});
 });
 app.post("/login/data", function(request, response){
       const name = request.body.Username;
@@ -53,11 +62,7 @@ app.post("/register", function(request, response){
 });
 
 
-
-
-
 //login
-
 function login(response, namn, lösenord){
     db.get("SELECT lösenord FROM Personer WHERE namn == '"+namn+"'",function(error, row){
     if(error){
