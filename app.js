@@ -20,6 +20,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 //api login
 app.get("/", function(request, response){
+      request.session.user = {id:null};
       response.render('login');
 });
 app.get("/login.ejs", function(request, response){
