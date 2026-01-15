@@ -2,6 +2,7 @@ const sqlite3 = require('sqlite3').verbose();
 const express = require("express");
 const path = require('path');
 const session = require('express-session');
+const { render } = require('ejs');
 
 const app = express();
 
@@ -23,16 +24,16 @@ app.get("/", function(request, response){
       request.session.user = {id:null};
       response.render('login');
 });
-app.get("/login.ejs", function(request, response){
+app.get("/login", function(request, response){
       response.render('login');
 });
-app.get("/register.ejs", function(request, response){
+app.get("/register", function(request, response){
       response.render('register');
 });
-app.get("/main.ejs", function(request, response){
+app.get("/main", function(request, response){
       response.render('main');
 });
-app.get("/forgotpassword.ejs", function(request, response){
+app.get("/forgotpassword", function(request, response){
   response.render('forgotpassword');
 });
 app.get("/quiz", function(request, response){
@@ -54,8 +55,9 @@ app.get("/custom", function(request, response){
 app.post("/answered", function(request, response){
   const question = request.body.question;
   const answer = request.body.answer;
-  console.log(question)
-  KollaSvar(question, answer)
+  console.log("Fråga:", question);
+  console.log(answer);
+  KollaSvar(response, question, answer)
 });
 app.post("/login/data", function(request, response){
       const name = request.body.Username;
@@ -118,14 +120,14 @@ function register(response, lösenord, namn){
 
 function fråga(response,subject){
   if (subject == "matte"){
-    db.all("SELECT fråga.fråga, fråga.svar FROM fråga JOIN Frågor on Frågor.frågaID = fråga.ID WHERE frågor.namn == 'matte'",function(err,rows){
+      db.all("SELECT fråga.fråga, fråga.svar FROM fråga JOIN Frågor on Frågor.frågaID = fråga.ID WHERE frågor.namn == 'matte'",function(err,rows){
       let fråga1;
       let svar;
       svar = rows[0]
       response.render('quiz',{message: ""+svar.fråga+"", Rubrik: "Mattematik"});
       console.log(svar.fråga);
       console.log(err);
-    });
+      });
   }
   if (subject == "geografi"){
     
@@ -138,19 +140,27 @@ function fråga(response,subject){
   }
 
 }
-function KollaSvar(fråga, svar){
-  db.run("SELECT fråga.Svar FROM fråga WHERE fråga.fråga == '"+fråga+"'",function(err,row){
+function KollaSvar(respone, fråga, svar){
+  
+  db.get("SELECT Svar FROM fråga WHERE fråga.fråga = '"+fråga+"';",function(err,row){
       facit = row
       console.log(facit)
       console.log(err);
-      const svar1 = svar.toLowerCase().split(" ");
-      const facit1 = facit.toLowerCase();
+      const svar1 = svar.split(" ");
       
       svar1.forEach((svar2) => {
-      if(svar2 == facit1){
+      if(svar2 == facit){
         console.log("rätt svar")
+        bool = true;
       }
+      else{ bool = false}
       });
+      if(bool == true){
+        respone.render("rightanswer")
+      }
+      else{
+        respone.render("wronganswer")
+      }
     });
 };
 function läggatill(fråga, svar){
