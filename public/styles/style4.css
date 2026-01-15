@@ -1,0 +1,138 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Inter, system-ui, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #eefbff 0%, #7dd9ff 100%);
+}
+
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-header {
+    background: #62cff4;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.page-header h1 {
+    font-size: 28px;
+    font-weight: 500;
+    color: black;
+}
+
+.next-btn {
+    position: absolute;
+    right: 20px;
+    background: white;
+    color: black;
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.custom-content {
+    gap: 40px;
+}
+
+.left-section, 
+.right-section {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left-section img {
+    width: 100%;
+    max-width: 250px;
+}
+
+.right-section {
+    position: relative;
+}
+
+.right-section span {
+    position: absolute;
+    display: block;
+}
+
+.page.is-wrong .right-section span::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 6px;
+    background: red;
+    transform: rotate(90deg);
+}
+
+.page.is-wrong .right-section span {
+    transform: rotate(45deg);
+}
+
+.page.is-correct .right-section span {
+    width: 120px;
+    height: 60px;
+    border-left: 8px solid #2bdc2b;
+    border-bottom: 8px solid #2bcd2b;
+    transform: rotate(-45deg);
+}
+
+@media (min-width: 600px) {
+    .page-header {
+        padding: 25px 50px;
+    }
+
+    .page-header h1 {
+        font-size: 32px;
+    }
+
+    .left-section,
+    .right-section {
+        width: 350px;
+        height: 350px;
+    }
+}
+
+@media (max-width: 599px) {
+    .custom-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .left-section,
+    .right-section {
+        width: 100%;
+        max-width: 300px;
+        height: 250px;
+    }
+
+    .page-header h1 {
+        font-size: 22px;
+    }
+
+    .next-btn {
+        font-size: 14px;
+        padding: 6px 14px;
+    }
+}
