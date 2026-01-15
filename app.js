@@ -39,7 +39,8 @@ app.get("/quiz", function(request, response){
   response.render('choosesubject');
 });
 app.get("/matte", function(request, response){
-  response.render('quiz',{message: "matte fråga", Rubrik: "Mattematik", Answer1:"hej", Answer2:"hej", Answer3:"hej", Answer4:"hej"});
+  fråga(response,'matte');
+  //response.render('quiz',{message: "matte fråga", Rubrik: "Mattematik"});
 });
 app.get("/geografi", function(request, response){
   response.render('quiz',{message: "geografi fråga", Rubrik: "Geografi", Answer1:"hej", Answer2:"hej", Answer3:"hej", Answer4:"hej"});
@@ -49,6 +50,12 @@ app.get("/kemi", function(request, response){
 });
 app.get("/custom", function(request, response){
   response.render('quiz',{message: "egen fråga", Rubrik: "Custom", Answer1:"hej", Answer2:"hej", Answer3:"hej", Answer4:"hej"});
+});
+app.post("/answered", function(request, response){
+  const question = request.body.question;
+  const answer = request.body.answer;
+  console.log(question)
+  KollaSvar(question, answer)
 });
 app.post("/login/data", function(request, response){
       const name = request.body.Username;
@@ -109,11 +116,16 @@ function register(response, lösenord, namn){
   });
 }
 
-function fråga(subject){
+function fråga(response,subject){
   if (subject == "matte"){
-    db.run("SELECT ID FROM frågor WHERE name == Matematik",function(err,ID){
-      ID
-    })
+    db.all("SELECT fråga.fråga, fråga.svar FROM fråga JOIN Frågor on Frågor.frågaID = fråga.ID WHERE frågor.namn == 'matte'",function(err,rows){
+      let fråga1;
+      let svar;
+      svar = rows[0]
+      response.render('quiz',{message: ""+svar.fråga+"", Rubrik: "Mattematik"});
+      console.log(svar.fråga);
+      console.log(err);
+    });
   }
   if (subject == "geografi"){
     
@@ -126,16 +138,20 @@ function fråga(subject){
   }
 
 }
-function KollaSvar(svar, facit){
-  const svar1 = svar.toLowerCase().split(" ");
-  const facit1 = facit.toLowerCase();
-  let rättad = false;
-  svar1.forEach((svar2) => {
-    if(svar2 == facit1){
-      rättad = true;
-    }
-  });
-  return rättad;
+function KollaSvar(fråga, svar){
+  db.run("SELECT fråga.Svar FROM fråga WHERE fråga.fråga == '"+fråga+"'",function(err,row){
+      facit = row
+      console.log(facit)
+      console.log(err);
+      const svar1 = svar.toLowerCase().split(" ");
+      const facit1 = facit.toLowerCase();
+      
+      svar1.forEach((svar2) => {
+      if(svar2 == facit1){
+        console.log("rätt svar")
+      }
+      });
+    });
 };
 function läggatill(fråga, svar){
   db.run("INSERT INTO Fråga (fråga, Svar)VALUES('"+fråga+"','"+svar+"')",function(error){
