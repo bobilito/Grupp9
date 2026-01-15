@@ -39,16 +39,16 @@ app.get("/quiz", function(request, response){
   response.render('choosesubject');
 });
 app.get("/matte", function(request, response){
-  response.render('quiz',{message: "matte fråga", Rubrik: "Mattematik"});
+  response.render('quiz',{message: "matte fråga", Rubrik: "Mattematik", Answer1:"hej", Answer2:"hej", Answer3:"hej", Answer4:"hej"});
 });
 app.get("/geografi", function(request, response){
-  response.render('quiz',{message: "geografi fråga", Rubrik: "Geografi"});
+  response.render('quiz',{message: "geografi fråga", Rubrik: "Geografi", Answer1:"hej", Answer2:"hej", Answer3:"hej", Answer4:"hej"});
 });
 app.get("/kemi", function(request, response){
-  response.render('quiz',{message: "kemi fråga", Rubrik: "Kemi"});
+  response.render('quiz',{message: "kemi fråga", Rubrik: "Kemi", Answer1:"hej", Answer2:"hej", Answer3:"hej", Answer4:"hej"});
 });
 app.get("/custom", function(request, response){
-  response.render('quiz',{message: "egen fråga", Rubrik: "Custom"});
+  response.render('quiz',{message: "egen fråga", Rubrik: "Custom", Answer1:"hej", Answer2:"hej", Answer3:"hej", Answer4:"hej"});
 });
 app.post("/login/data", function(request, response){
       const name = request.body.Username;
@@ -109,7 +109,23 @@ function register(response, lösenord, namn){
   });
 }
 
+function fråga(subject){
+  if (subject == "matte"){
+    db.run("SELECT ID FROM frågor WHERE name == Matematik",function(err,ID){
+      ID
+    })
+  }
+  if (subject == "geografi"){
+    
+  }
+  if (subject == "kemi"){
+    
+  }
+  if (subject == "egen"){
+    
+  }
 
+}
 function KollaSvar(svar, facit){
   const svar1 = svar.toLowerCase().split(" ");
   const facit1 = facit.toLowerCase();
