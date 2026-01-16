@@ -9,14 +9,16 @@
 <body>
     <div class="page">
         <header class="page-header">
-            <a href="main.ejs" class="back-arrow">←</a>
+            <a href="main" class="back-arrow">←</a>
             <h1 id="subject-title"><%= Rubrik %></h1>
         </header>
 
         <main class="custom-content">
             <div class="left-section">
                 <div class="question-box"><%= message %></div>
-                <form action="answered" method="post" question="<%= message %>">
+                <form action="/answered" method="post">
+                
+                <input type="hidden" name="question" value="<%= message %>">
                 <label for="answer">answer</label>
                 <input type="text" placeholder="answer:" id="answer" name="answer">
                 <button type="submit" class="answer-btn"></button>
